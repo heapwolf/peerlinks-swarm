@@ -1,31 +1,30 @@
 /* eslint-env node, mocha */
-import * as assert from 'assert';
-import { Buffer } from 'buffer';
-import { create as createPair } from 'stream-pair';
+const assert = require('assert')
 
-import StreamSocket from '../lib/stream-socket';
+const { create: createPair } = require('stream-pair')
+
+const StreamSocket = require('../lib/stream-socket')
 
 describe('StreamSocket', () => {
   it('should create socket and encode/decode packets', async () => {
-    const pair = createPair();
+    const pair = createPair()
 
-    const a = new StreamSocket(pair);
-    const b = new StreamSocket(pair.other);
+    const a = new StreamSocket(pair)
+    const b = new StreamSocket(pair.other)
 
-    await a.send(Buffer.from('hello'));
-    await a.send(Buffer.from('world'));
-    assert.strictEqual((await b.receive()).toString(), 'hello');
-    assert.strictEqual((await b.receive()).toString(), 'world');
+    await a.send(Buffer.from('hello'))
+    await a.send(Buffer.from('world'))
+    assert.strictEqual((await b.receive()).toString(), 'hello')
+    assert.strictEqual((await b.receive()).toString(), 'world')
 
-    await a.close();
+    await a.close()
     await assert.rejects(b.receive(), {
       name: 'Error',
-      message: 'Closed',
-    });
+      message: 'Closed'
+    })
     await assert.rejects(a.receive(), {
       name: 'Error',
-      message: 'Closed',
-    });
-  });
-});
-
+      message: 'Closed'
+    })
+  })
+})

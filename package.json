@@ -4,10 +4,10 @@
   "description": "hyperswarm integration for PeerLinks",
   "main": "lib/swarm.js",
   "scripts": {
-    "lint": "eslint lib test",
+    "lint": "standard lib test",
     "lint:fix": "npm run lint -- --fix",
-    "mocha": "mocha -r esm --reporter=spec test/*-test.js",
-    "test-script": "node -r esm test/swarm.js",
+    "mocha": "mocha -b --reporter=spec test/*-test.js",
+    "test-script": "node test/swarm.js",
     "test": "npm run mocha && npm run test-script && npm run lint"
   },
   "repository": {
@@ -24,19 +24,18 @@
   "bugs": {
     "url": "https://github.com/peerlinks/peerlinks-swarm/issues"
   },
-  "type": "module",
   "homepage": "https://github.com/peerlinks/peerlinks-swarm#readme",
   "devDependencies": {
-    "@peerlinks/protocol": "^7.4.2",
+    "@peerlinks/protocol": "github:heapwolf/peerlinks",
     "eslint": "^6.8.0",
     "esm": "^3.2.25",
     "mocha": "^6.2.2",
-    "sodium-universal": "^2.0.0",
     "stream-pair": "^1.0.3"
   },
   "dependencies": {
     "debug": "^4.1.1",
     "hyperswarm": "^2.13.0",
-    "promise-waitlist": "^1.5.0"
+    "promise-waitlist": "^1.5.0",
+    "sodium-native": "^3.0.1"
   }
 }
