@@ -24,6 +24,7 @@
   "bugs": {
     "url": "https://github.com/peerlinks/peerlinks-swarm/issues"
   },
+  "type": "module",
   "homepage": "https://github.com/peerlinks/peerlinks-swarm#readme",
   "devDependencies": {
     "@peerlinks/protocol": "^7.4.2",
